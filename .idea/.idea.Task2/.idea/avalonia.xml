@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="Task2/App.axaml" value="Task2/Task2.csproj" />
+        <entry key="Task2/MainWindow.axaml" value="Task2/Task2.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

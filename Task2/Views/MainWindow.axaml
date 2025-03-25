@@ -1,0 +1,44 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Task2.ViewModels"
+        xmlns:models="clr-namespace:Task2.Models"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Task2.Views.MainWindow"
+        Title="Демонстрация живых существ"
+        Width="600" Height="400"
+        x:DataType="vm:MainWindowViewModel">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Grid Margin="10" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,*">
+        <ComboBox Grid.Row="0" 
+                  ItemsSource="{Binding Creatures}" 
+                  SelectedItem="{Binding SelectedCreature}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate x:DataType="models:LivingCreature">
+                    <TextBlock Text="{Binding Status}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10" Spacing="10">
+            <Button Content="Двигаться" Command="{Binding MoveCreature}"/>
+            <Button Content="Стоять" Command="{Binding StopCreature}"/>
+            <Button Content="Рычать" Command="{Binding Roar}" IsEnabled="{Binding CanRoar}"/>
+            <Button Content="Лаять" Command="{Binding Bark}" IsEnabled="{Binding CanBark}"/>
+            <Button Content="Залезть на дерево" Command="{Binding ClimbTree}" IsEnabled="{Binding CanClimbTree}"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="2" Text="Журнал действий:" FontWeight="Bold"/>
+        <TextBox Grid.Row="3" 
+                 Text="{Binding ActionLog}" 
+                 IsReadOnly="True" 
+                 AcceptsReturn="True" 
+                 ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                 Height="200"/>
+    </Grid>
+</Window>
